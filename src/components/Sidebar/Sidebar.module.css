@@ -1,0 +1,43 @@
+aside{
+    height: 100%; 
+    width: 15%; 
+    position: fixed; 
+    z-index: 1; 
+    top: 0; 
+    left: 0;
+    background-color: #3c64b9;
+    overflow-x: hidden; 
+    padding-top: 20px;
+}
+.logo{
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    margin-left: 20px;
+}
+.logoIcon{
+    font-size: 50px;
+    color: rgb(31, 29, 29);
+}
+.menuItem{
+    display: flex;
+    gap: 30px;
+    color: rgb(31, 29, 29);
+    text-decoration: none;
+    font-size: 18px;
+    cursor: pointer;
+    margin-top: 30px;
+
+}
+.menuItem:hover{
+    background-color: #575757;
+    color: white;
+}
+.menu{
+    list-style:none;
+    display:flex;
+    flex-direction:column;
+    gap:14px;
+    padding:0;
+    margin:0;
+}
