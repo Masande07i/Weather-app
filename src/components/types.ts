@@ -1,7 +1,8 @@
 export interface WeatherData {
   city: string;
   temperature: number;
+  feelsLike: number;
   condition: string;
-  humidity: number;
-  windSpeed: number;
+  date: string;
+  icon: string;
 }

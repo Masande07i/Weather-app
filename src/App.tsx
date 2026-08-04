@@ -1,17 +1,12 @@
-import { useEffect, useState } from 'react'
 import './App.css'
-import { Sidebar } from './components/Sidebar/Sidebar'
-import { Search } from './components/Search/Search'
-import { WeatherHero } from './components/WeatherHero/WeatherHero'
+
+import { Home } from './components/Home/Home'
 // import { Route } from 'react-router-dom'
+
 
 function App() {
   
-  const [searchQuery, setSearchQuery] = useState<string>('')
-  
-  const onSearch=(newValue: string)=>{
-   setSearchQuery(newValue)
- }
+
 //  useEffect(()=>{
 //   const fetchWeatherData = async () => {
 //     try {
@@ -27,14 +22,9 @@ function App() {
 
   return (
     <>
-    <Sidebar />
-     <Search searchQuery={searchQuery} onSearch={onSearch}/>
-     <WeatherHero />
-     
-    
-    
-    
+    <Home/>
     </>
+    
   )
 }
 

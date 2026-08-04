@@ -1,63 +1,68 @@
-.hero{
-    width:100%;
+.mainContent{
+    flex:1;
     display:flex;
-    justify-content:center;
-    margin-left: 15px;
-    background:#2968b9;
-    
+    flex-direction:column;
+    background:#08131F;
+    min-height:100vh;
+}
+.hero{
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
 }
 
 .heroCard{
-    width:100%;
-    max-width:1000px;
-    border-radius:24px;
-    padding:40px;
-   
+    width: 100%;
+    max-width: 950px;
+
 }
-
-.topSection{
-
+.header{
     display:flex;
     justify-content:space-between;
     align-items:center;
-    margin-bottom:20px;
+
+    margin-bottom:1rem;
 }
-
 .location{
-
     display:flex;
     align-items:center;
-    gap:12px;
+    gap:.6rem;
 }
-
+.locationIcon{
+    color:#12F7D6;
+    font-size:1.3rem;
+}
+.weatherIcon{
+    margin-right: 30%;
+    font-size:4rem;
+    color:#FFD54F;
+}
 .date{
-
-    color:#181a1d;
-    margin-bottom:40px;
+    color:#A5B4C7;
+    margin-bottom:2rem;
 }
-
-.temperatureContainer{
-
+.temperatureSection{
     display:flex;
     justify-content:center;
     align-items:center;
-    gap:12px;
 }
-
 
 .temperature{
     font-size:6rem;
     font-weight:700;
     color:white;
 }
-
 .condition{
     text-align:center;
-    margin-top:10px;
-   
-}
+    margin-top:.5rem;
 
+    
+}
 .feelsLike{
     text-align:center;
-    margin-top:8px;
+    color:#A5B4C7;
+
+    margin-top:.4rem;
 }

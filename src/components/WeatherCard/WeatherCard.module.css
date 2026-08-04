@@ -1,13 +1,35 @@
-.weatherCard{
-    /* background-color: rgb(81, 140, 196); */
-    width:80%;
-    margin-left:15%;
-    display:grid;
-    grid-template-columns: repeat(4, 1fr);
-  
+.card {
+    background: #121F30;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 20px;
+
+    padding: 1.5rem;
+    margin-left: 15%;;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 1rem;
+
+    min-height: 180px;
+    width: 100%;
+
 }
-.weatherCard {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(4, 2fr));
-  gap: 16px;
+
+
+.icon {
+    font-size: 2.2rem;
+    color: #12F7D6;
+}
+
+.title {
+    color: #AAB6C5;
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.value {
+    color: #ffffff;
+    font-size: 2rem;
+    font-weight: 700;
 }
