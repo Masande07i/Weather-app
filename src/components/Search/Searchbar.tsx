@@ -14,8 +14,6 @@ export const Searchbar: React.FC<SearchBarProps> = ({searchQuery, onSearch}) => 
 
      <div className={style.searchContainer}>
 
-    <Text variant="span" > Search </Text>
-
     <div className={style.inputContainer}>
 
       <FaSearch className={style.icon} />

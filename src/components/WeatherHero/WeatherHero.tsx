@@ -33,6 +33,9 @@ export const WeatherHero = () => {
         <Text variant="body" className={style.feelsLike}>
           Feels like 26°C
         </Text>
+        
+      </div>
+      <div>
         <WeatherCard />
       </div>
 

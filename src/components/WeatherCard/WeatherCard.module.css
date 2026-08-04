@@ -1,0 +1,13 @@
+.weatherCard{
+    /* background-color: rgb(81, 140, 196); */
+    width:80%;
+    margin-left:15%;
+    display:grid;
+    grid-template-columns: repeat(4, 1fr);
+  
+}
+.weatherCard {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(4, 2fr));
+  gap: 16px;
+}

@@ -1,4 +1,5 @@
 import React from 'react'
+import style from './WeatherCard.module.css';
 
 const WeatherItems = [
   {title: 'Temperature', value: '25°C',id: 1},
@@ -9,13 +10,18 @@ const WeatherItems = [
 
 export const WeatherCard = () => {
   return (
-    
+    <div className={style.weatherCard}>
+     {
    (WeatherItems.map((item) => (
-      <div key={item.id}>
+      <div  className={style.weatherItem} key={item.id}>
+        <div className={style.cards}>
         <h3>{item.title}</h3>
         <p>{item.value}</p>
+        </div>
       </div>
   
     )))
+  }
+    </div>
   )
 }

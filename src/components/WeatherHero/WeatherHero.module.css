@@ -2,13 +2,14 @@
     width:100%;
     display:flex;
     justify-content:center;
+    margin-left: 15px;
+    background:#2968b9;
     
 }
 
 .heroCard{
     width:100%;
     max-width:1000px;
-    background:#2968b9;
     border-radius:24px;
     padding:40px;
    

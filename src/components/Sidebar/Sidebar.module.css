@@ -8,7 +8,9 @@ aside{
     background-color: #3c64b9;
     overflow-x: hidden; 
     padding-top: 20px;
+ 
 }
+
 .logo{
     display: flex;
     align-items: center;
@@ -40,4 +42,11 @@ aside{
     gap:14px;
     padding:0;
     margin:0;
+}
+.preferenceSec{
+    margin-top: 20px;
+}
+.bottom{
+    margin-top: 100%;
+    font-size: 30px;
 }
