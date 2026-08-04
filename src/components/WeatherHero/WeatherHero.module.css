@@ -1,0 +1,62 @@
+.hero{
+    width:100%;
+    display:flex;
+    justify-content:center;
+    
+}
+
+.heroCard{
+    width:100%;
+    max-width:1000px;
+    background:#2968b9;
+    border-radius:24px;
+    padding:40px;
+   
+}
+
+.topSection{
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:20px;
+}
+
+.location{
+
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.date{
+
+    color:#181a1d;
+    margin-bottom:40px;
+}
+
+.temperatureContainer{
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:12px;
+}
+
+
+.temperature{
+    font-size:6rem;
+    font-weight:700;
+    color:white;
+}
+
+.condition{
+    text-align:center;
+    margin-top:10px;
+   
+}
+
+.feelsLike{
+    text-align:center;
+    margin-top:8px;
+}
