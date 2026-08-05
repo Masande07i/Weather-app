@@ -1,11 +1,11 @@
 .card {
-    background: #121F30;
+    /* background: #121F30; */
     border: 1px solid rgba(255, 255, 255, 0.08);
     padding: 1.5rem;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    gap: 1rem;
+    gap: 5px;
     min-height: 180px;
     width: 30%;
 
@@ -18,7 +18,7 @@
 }
 
 .title {
-    color: #AAB6C5;
+    
     font-size: 1rem;
     font-weight: 500;
 }

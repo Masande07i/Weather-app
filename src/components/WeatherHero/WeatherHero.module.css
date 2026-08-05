@@ -2,7 +2,7 @@
     flex:1;
     display:flex;
     flex-direction:column;
-    background:#08131F;
+    background:#8ab4e1;
     min-height:100vh;
 }
 .hero{
@@ -35,7 +35,7 @@
     font-size:1.3rem;
 }
 .weatherIcon{
-    margin-right: 30%;
+    margin-right: 60%;
     font-size:4rem;
     color:#FFD54F;
 }
@@ -62,7 +62,7 @@
 }
 .feelsLike{
     text-align:center;
-    color:#A5B4C7;
+  
 
     margin-top:.4rem;
 }

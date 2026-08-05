@@ -3,6 +3,7 @@ import { Text } from '../Text/Text';
 import { TiWeatherPartlySunny } from 'react-icons/ti';
 import { FaHome,FaMapMarkerAlt,FaBell,FaCog} from 'react-icons/fa';
 import { MdOutlineWbSunny } from 'react-icons/md';
+import {Theme} from '../Theme/Theme'
 
 const menuItems = [
   {title: 'Home', icon: <FaHome />, id: 1},
@@ -45,16 +46,10 @@ export const Sidebar = () => {
 
 </div>
 
+<Theme/>
 
-<div className={style.preferenceSec}>
 
-    <Text variant="body">Theme</Text>
 
-    <div className={style.toggle}>
-        <button> Dark </button>
-        <button>Light </button>
-    </div>
-  </div>
 
 </div>
     </aside>

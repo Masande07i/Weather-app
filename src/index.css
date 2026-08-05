@@ -1,0 +1,17 @@
+:root {
+  --background: #08131F;
+  --card-bg: #121F30;
+  --sidebar-bg: #0E1A2B;
+  --text: #FFFFFF;
+  --secondary-text: #AAB6C5;
+  --accent: #12F7D6;
+}
+
+[data-theme="light"] {
+  --background: #F4F8FB;
+  --card-bg: #FFFFFF;
+  --sidebar-bg: #E8EEF5;
+  --text: #08131F;
+  --secondary-text: #4F5B6B;
+  --accent: #12F7D6;
+}
