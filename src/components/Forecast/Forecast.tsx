@@ -1,5 +1,6 @@
-import style from './Forecast.module.css'
 
+import { useState } from 'react'
+import style from './Forecast.module.css'
 
 interface ForecastProps {
   hourly: any[]
@@ -7,54 +8,74 @@ interface ForecastProps {
 }
 
 export function Forecast({ hourly, weekly }: ForecastProps) {
- 
+  const [activeTab, setActiveTab] = useState<'hourly' | 'weekly'>('hourly')
+
   const formatHour = (timeStr: string) => {
     return timeStr.substring(0, 5)
   }
 
-  
   const formatDay = (dateStr: string) => {
     const date = new Date(dateStr)
     return date.toLocaleDateString('en-US', { weekday: 'long' })
   }
 
-  const displayHours = hourly.filter((_, index) => index % 2 === 0)
-  
 
   const displayDays = weekly.slice(0, 7)
 
   return (
-    <div className="forecast-container">
-    
-      <section className="hourly-section">
-        <h2>Hourly Forecast</h2>
-        <div className="hourly-scroll">
-          {displayHours.map((hour, index) => (
-            <div key={index} className="hourly-card">
-              <span className="hour-time">{formatHour(hour.datetime)}</span>
-              <span className="hour-temp">{Math.round(hour.temp)}°</span>
-              <span className="hour-cond">{hour.conditions}</span>
-            </div>
-          ))}
-        </div>
-      </section>
+    <div className={style.forecastContainer}>
+      
+      
+      <div className={style.toggleTabs}>
+        <button 
+          className={`${style.tabButton} ${activeTab === 'hourly' ? style.activeTab : ''}`}
+          onClick={() => setActiveTab('hourly')}
+        >
+          Hourly Forecast
+        </button>
+        <button 
+          className={`${style.tabButton} ${activeTab === 'weekly' ? style.activeTab : ''}`}
+          onClick={() => setActiveTab('weekly')}
+        >
+          7-Day Forecast
+        </button>
+      </div>
 
      
-      <section className="weekly-section">
-        <h2>7-Day Forecast</h2>
-        <div className="weekly-list">
-          {displayDays.map((day, index) => (
-            <div key={index} className="weekly-row">
-              <span className="day-name">{index === 0 ? 'Today' : formatDay(day.datetime)}</span>
-              <span className="day-cond">{day.conditions}</span>
-              <div className="day-temps">
-                <span className="temp-max">{Math.round(day.tempmax)}°</span>
-                <span className="temp-min">{Math.round(day.tempmin)}°</span>
-              </div>
+      <div className={style.tabContent}>
+        {activeTab === 'hourly' ? (
+          <section className={style.hourlySection}>
+            <div className={style.hourlyScroll}>
+            
+              {hourly.map((hour, index) => (
+                <div key={index} className={style.hourlyCard}>
+                  <span className={style.hourTime}>{formatHour(hour.datetime)}</span>
+                  <span className={style.hourTemp}>{Math.round(hour.temp)}°C</span>
+                  <span className={style.hourCond}>{hour.conditions}</span>
+                </div>
+              ))}
             </div>
-          ))}
-        </div>
-      </section>
+          </section>
+        ) : (
+          <section className={style.weeklySection}>
+            <div className={style.weeklyList}>
+              {displayDays.map((day, index) => (
+                <div key={index} className={style.weeklyRow}>
+                  <span className={style.dayName}>
+                    {index === 0 ? 'Today' : formatDay(day.datetime)}
+                  </span>
+                  <span className={style.dayCond}>{day.conditions}</span>
+                  <div className={style.dayTemps}>
+                    <span className={style.tempMax}>{Math.round(day.tempmax)}°C</span>
+                    <span className={style.tempMin}>{Math.round(day.tempmin)}°C</span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </section>
+        )}
+      </div>
+
     </div>
   )
 }
