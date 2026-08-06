@@ -4,90 +4,66 @@ import { Search } from '../Search/Search';
 import type { WeatherData } from '../types';
 import { useState } from 'react';
 import { FaLocationDot } from 'react-icons/fa6';
-import { WiDaySunny } from 'react-icons/wi';
-import { WiHumidity} from 'react-icons/wi';
-import { FaWind } from 'react-icons/fa'
-import { WeatherCard } from '../WeatherCard/WeatherCard';
-
+import { format } from 'date-fns';
 
 interface WeatherHeroProps {
   weather: WeatherData;
- 
+  locationName: string;
+  onCityChange: (newCity: string) => void; 
 }
 
-export const WeatherHero = ({weather,}: WeatherHeroProps) => {
-  const [searchQuery, setSearchQuery] = useState<string>('')
+export const WeatherHero = ({ weather, locationName, onCityChange }: WeatherHeroProps) => {
+  const [searchQuery, setSearchQuery] = useState<string>('');
+  
 
-  const onSearch=(newValue: string)=>{
-  setSearchQuery(newValue)
- }
+  const { temp,tempmax,tempmin, conditions, feelslike, windspeed, humidity } = weather || {};
+
+  const handleSearchSubmit = (newValue: string) => {
+    setSearchQuery(newValue);
+    if (newValue.trim()) {
+      onCityChange(newValue); 
+    }
+  };
+
   return (
     <main className={style.mainContent}>
-      <Search searchQuery={searchQuery} onSearch={onSearch}
-      />
+     
+      <Search searchQuery={searchQuery} onSearch={handleSearchSubmit} />
 
       <section className={style.hero}>
         <div className={style.heroCard}>
-
           <div className={style.header}>
+            
+           
             <div className={style.location}>
               <FaLocationDot className={style.locationIcon} />
-
-              <Text variant="h2">
-                {weather.city}
-              </Text>
+              <span>{locationName}</span>
             </div>
 
-            <WiDaySunny className={style.weatherIcon} />
+         
+            <p>{format(new Date(), 'EEEE, h:mm a')}</p>
+
+            <div className={style.weatherInfo}>
+              {temp !== undefined && (
+                <Text variant="h1" className={style.temperature}>
+                  {Math.round(temp)}°
+                </Text>
+              )}
+                  <p>
+                  ↑{Math.round(tempmax)}° / ↓{Math.round(tempmin)}°
+                  </p>
+
+              {conditions && <h2 className="condition-text">{conditions}</h2>}
+              
+              {feelslike !== undefined && <p>Feels like {Math.round(feelslike)}°</p>}
+
+              <div className={style.weatherCards}>
+                {windspeed !== undefined && <p>Wind: {windspeed} km/h</p>}
+                {humidity !== undefined && <p>Humidity: {humidity}%</p>}
+              </div>
+            </div>
+
           </div>
-
-          <Text
-            variant="body"
-            className={style.date}
-          >
-            {weather.date}
-          </Text>
-
-          <div className={style.weatherInfo}>
-            <Text
-              variant="h1"
-              className={style.temperature}
-            >
-              {weather.temperature}°C
-            </Text>
-
-            <Text
-              variant="h3"
-              className={style.condition}
-            >
-              {weather.condition}
-            </Text>
-
-            <Text
-              variant="body"
-              className={style.feelsLike}
-            >
-              Feels like {weather.feelsLike}°
-            </Text>
-          </div>
-          
-        <div className={style.weatherCards}>
-
-          <WeatherCard
-            icon={WiHumidity}
-            title="Humidity"
-            value="68%"
-          />
-
-          <WeatherCard
-            icon={FaWind}
-            title="Wind Speed"
-            value="12 km/h"
-          />
-
-        </div>
-
-
         </div>
       </section>
     </main>
