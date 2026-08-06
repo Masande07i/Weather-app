@@ -2,7 +2,7 @@ import style from './WeatherHero.module.css';
 import { Text } from '../Text/Text';
 import { Search } from '../Search/Search';
 import type { WeatherData } from '../types';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { FaLocationDot } from 'react-icons/fa6';
 import { format } from 'date-fns';
 
@@ -14,6 +14,10 @@ interface WeatherHeroProps {
 
 export const WeatherHero = ({ weather, locationName, onCityChange }: WeatherHeroProps) => {
   const [searchQuery, setSearchQuery] = useState<string>('');
+
+    useEffect(() => {
+    setSearchQuery('');
+  }, [locationName]);
   
 
   const { temp,tempmax,tempmin, conditions, feelslike, windspeed, humidity } = weather || {};

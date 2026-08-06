@@ -31,7 +31,11 @@ function App() {
         
   
         setWeatherData({
-          current: weather.currentConditions, 
+          current:{
+          ...weather.currentConditions, 
+          tempmax: weather.days[0].tempmax, 
+          tempmin: weather.days[0].tempmin,
+        },
           hourly: weather.days[0].hours,
           weekly: weather.days,
         })
