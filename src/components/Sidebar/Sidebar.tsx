@@ -1,37 +1,39 @@
 import style from './Sidebar.module.css';
 import { Text } from '../Text/Text';
 import { TiWeatherPartlySunny } from 'react-icons/ti';
-import { FaHome,FaMapMarkerAlt,FaBell,FaCog} from 'react-icons/fa';
-import { MdOutlineWbSunny } from 'react-icons/md';
+import { FaHome,FaBell,FaCog} from 'react-icons/fa';
 import {Theme} from '../Theme/Theme'
+import { useNavigate } from 'react-router-dom';
+import { BsFillSaveFill } from "react-icons/bs";
 
-const menuItems = [
-  {title: 'Home', icon: <FaHome />, id: 1},
-  {title: 'Forecast', icon: <MdOutlineWbSunny />, id: 2},
-  {title: 'Saved Locations', icon: <FaMapMarkerAlt />, id: 3},
-  {title: 'Alerts', icon: <FaBell />, id: 4},
-  {title: 'Settings', icon: <FaCog />, id: 5}
-];
+
 
 export const Sidebar = () => {
+  
+const navigate = useNavigate()
+const handleHome = () =>{
+  navigate('/')
+}
+const handleSettings = () => {
+  navigate('/settings')
+}
+const handleLocations =() =>{
+  navigate('/saved-locations')
+}
+
   return (
     <aside className={style.sidebar}>
-     
       <div className={style.logo}>
         <TiWeatherPartlySunny className={style.logoIcon} />
-        <Text variant="h1">Weather</Text>
-      </div>
+        <Text variant = 'h2' >Weather</Text>
 
-      <nav className={style.navigation}>
-        <ul className={style.menu}>
-          {menuItems.map((item) => (
-            <li key={item.id} className={style.menuItem}>
-              <span className={style.icon}>{item.icon}</span>
-              <Text >{item.title}</Text>
-            </li>
-          ))}
-        </ul>
-      </nav>
+      </div>
+     <div className={style.pages}>
+      <FaHome onClick={handleHome}/>
+      <FaCog onClick={handleSettings} />
+      <BsFillSaveFill onClick={handleLocations}/>
+     
+      </div>
 
       <div className={style.bottom}>
 
