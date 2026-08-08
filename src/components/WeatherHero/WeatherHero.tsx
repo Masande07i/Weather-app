@@ -28,48 +28,82 @@ export const WeatherHero = ({ weather, locationName, onCityChange }: WeatherHero
       onCityChange(newValue); 
     }
   };
+return (
+  <main className={style.mainContent}>
 
-  return (
-    <main className={style.mainContent}>
-     
-      <Search searchQuery={searchQuery} onSearch={handleSearchSubmit} />
+    <Search
+      searchQuery={searchQuery}
+      onSearch={handleSearchSubmit}
+    />
 
-      <section className={style.hero}>
-        <div className={style.heroCard}>
-          <div className={style.header}>
-            
-           
-            <div className={style.location}>
-              <FaLocationDot className={style.locationIcon} />
-              <span>{locationName}</span>
-            </div>
+    <section className={style.hero}>
 
-         
-            <p>{format(new Date(), 'EEEE, h:mm a')}</p>
+      <div className={style.heroCard}>
 
-            <div className={style.weatherInfo}>
-              {temp !== undefined && (
-                <Text variant="h1" className={style.temperature}>
-                  {Math.round(temp)}°
-                </Text>
+        <div className={style.header}>
+
+          <div className={style.location}>
+            <FaLocationDot className={style.locationIcon} />
+            <span>{locationName}</span>
+          </div>
+
+          <p className={style.date}>
+            {format(new Date(), 'EEEE, h:mm a')}
+          </p>
+
+          <div className={style.weatherInfo}>
+
+            {temp !== undefined && (
+              <Text
+                variant="h1"
+                className={style.temperature}
+              >
+                {Math.round(temp)}°
+              </Text>
+            )}
+
+            <p className={style.highLow}>
+              ↑{Math.round(tempmax)}° / ↓{Math.round(tempmin)}°
+            </p>
+
+            {conditions && (
+              <h2 className={style.condition}>
+                {conditions}
+              </h2>
+            )}
+
+            {feelslike !== undefined && (
+              <p className={style.feelsLike}>
+                Feels like {Math.round(feelslike)}°
+              </p>
+            )}
+
+            <div className={style.weatherCards}>
+
+              {windspeed !== undefined && (
+                <div className={style.weatherCard}>
+                  <span>Wind</span>
+                  <strong>{windspeed} km/h</strong>
+                </div>
               )}
-                  <p>
-                  ↑{Math.round(tempmax)}° / ↓{Math.round(tempmin)}°
-                  </p>
 
-              {conditions && <h2 className="condition-text">{conditions}</h2>}
-              
-              {feelslike !== undefined && <p>Feels like {Math.round(feelslike)}°</p>}
+              {humidity !== undefined && (
+                <div className={style.weatherCard}>
+                  <span>Humidity</span>
+                  <strong>{humidity}%</strong>
+                </div>
+              )}
 
-              <div className={style.weatherCards}>
-                {windspeed !== undefined && <p>Wind: {windspeed} km/h</p>}
-                {humidity !== undefined && <p>Humidity: {humidity}%</p>}
-              </div>
             </div>
 
           </div>
+
         </div>
-      </section>
-    </main>
-  );
-};
+
+      </div>
+
+    </section>
+
+  </main>
+);
+}

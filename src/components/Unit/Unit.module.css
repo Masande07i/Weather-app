@@ -1,0 +1,53 @@
+.unit {
+    width: 100%;
+}
+
+.title {
+    color: #AAB6C5;
+
+    font-size: 14px;
+
+    margin: 0 0 10px 0;
+}
+
+.toggle {
+    display: flex;
+
+    gap: 8px;
+}
+
+.toggle button {
+    flex: 1;
+
+    padding: 10px;
+
+    background: #121F30;
+
+    color: #AAB6C5;
+
+    border: 1px solid rgba(255, 255, 255, 0.08);
+
+    border-radius: 10px;
+
+    cursor: pointer;
+
+    font-size: 14px;
+
+    transition: 0.3s;
+}
+
+.toggle button:hover {
+    border-color: #12F7D6;
+
+    color: #12F7D6;
+}
+
+.toggle button.active {
+    background: #12F7D6;
+
+    color: #08131F;
+
+    border-color: #12F7D6;
+
+    font-weight: 700;
+}

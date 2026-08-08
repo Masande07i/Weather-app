@@ -1,9 +1,184 @@
-.card{
-    background-color: rgb(127, 161, 255);
-    margin-left: 15%;
-}
-.forecast{
-    background-color: aqua;
-    margin-left: 15%;
+.forecast {
+    margin-left: 250px;
 
+    margin-top: 30px;
+
+    margin-right: 40px;
+
+    padding: 30px;
+
+    background: #121F30;
+
+    border: 1px solid rgba(255, 255, 255, 0.08);
+
+    border-radius: 24px;
+
+    box-sizing: border-box;
+}
+.header {
+    margin-bottom: 25px;
+}
+
+.header h2 {
+    margin: 0;
+
+    color: white;
+
+    font-size: 24px;
+
+    font-weight: 700;
+}
+
+.header p {
+    margin-top: 6px;
+
+    color: #AAB6C5;
+
+    font-size: 14px;
+}
+.toggleTabs {
+    display: flex;
+
+    gap: 10px;
+
+    margin-bottom: 25px;
+}
+
+.tabButton {
+    padding: 10px 20px;
+
+    background: #0E1A2B;
+
+    color: #AAB6C5;
+
+    border: 1px solid rgba(255, 255, 255, 0.08);
+
+    border-radius: 10px;
+
+    font-size: 14px;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+.tabButton:hover {
+    color: #12F7D6;
+
+    border-color: #12F7D6;
+}
+
+.activeTab {
+    background: #12F7D6;
+
+    color: #08131F;
+
+    border-color: #12F7D6;
+
+    font-weight: 700;
+}
+.hourlyScroll {
+    display: flex;
+
+    gap: 15px;
+
+    overflow-x: auto;
+
+    padding-bottom: 10px;
+}
+.hourlyScroll::-webkit-scrollbar {
+    height: 5px;
+}
+
+.hourlyScroll::-webkit-scrollbar-track {
+    background: #0E1A2B;
+}
+
+.hourlyScroll::-webkit-scrollbar-thumb {
+    background: #12F7D6;
+
+    border-radius: 10px;
+}
+.hourlyCard {
+    min-width: 120px;
+
+    padding: 20px 15px;
+
+    background: #0E1A2B;
+
+    border: 1px solid rgba(255, 255, 255, 0.08);
+
+    border-radius: 16px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    gap: 10px;
+
+    transition: 0.3s;
+}
+.hourTime {
+    color: #AAB6C5;
+
+    font-size: 14px;
+}
+.hourTemp {
+    color: white;
+
+    font-size: 24px;
+
+    font-weight: 700;
+}
+.hourCond {
+    color: #12F7D6;
+
+    font-size: 13px;
+
+    text-align: center;
+}
+.weeklyList {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 10px;
+}
+.weeklyRow {
+    display: grid;
+
+    grid-template-columns: 150px 1fr 120px;
+
+    align-items: center;
+
+    padding: 16px 20px;
+
+    background: #0E1A2B;
+
+    border: 1px solid rgba(255, 255, 255, 0.08);
+
+    border-radius: 12px;
+
+    transition: 0.3s;
+}
+.dayName {
+    color: white;
+
+    font-size: 15px;
+
+    font-weight: 600;
+}
+.dayCond {
+    color: #AAB6C5;
+
+    font-size: 14px;
+}
+.dayTemps {
+    display: flex;
+
+    justify-content: flex-end;
+
+    gap: 15px;
 }

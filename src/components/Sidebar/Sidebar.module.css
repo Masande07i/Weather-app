@@ -1,63 +1,124 @@
-aside{
-    height: 100%; 
-    width: 15%; 
-    position: fixed; 
-    z-index: 1; 
-    top: 0; 
+.sidebar {
+    width: 250px;
+    height: 100vh;
+
+    position: fixed;
     left: 0;
-    background-color: #3c64b9;
-    overflow-x: hidden; 
-    padding-top: 20px;
- 
+    top: 0;
+
+    background: #0E1A2B;
+    color: white;
+
+    border-right: 1px solid rgba(255, 255, 255, 0.08);
+
+    display: flex;
+    flex-direction: column;
+
+    padding: 30px 20px;
+
+    box-sizing: border-box;
 }
 
-.logo{
+
+
+.logo {
     display: flex;
     align-items: center;
-    gap: 30px;
-    margin-left: 20px;
+
+    gap: 10px;
+
+    margin-bottom: 50px;
 }
-.logoIcon{
-    font-size: 50px;
-    color: rgb(31, 29, 29);
+
+.logoIcon {
+    font-size: 40px;
+    color: #12F7D6;
 }
-.menuItem{
+
+
+.pages {
     display: flex;
-    gap: 30px;
-    color: rgb(31, 29, 29);
-    text-decoration: none;
-    font-size: 18px;
+    flex-direction: column;
+
+    gap: 15px;
+}
+
+.pages svg {
+    width: 22px;
+    height: 22px;
+
+    padding: 12px;
+
+    border-radius: 12px;
+
+    color: #AAB6C5;
+
     cursor: pointer;
-    margin-top: 30px;
 
-}
-.menuItem:hover{
-    background-color: #575757;
-    color: white;
-}
-.menu{
-    list-style:none;
-    display:flex;
-    flex-direction:column;
-    gap:14px;
-    padding:0;
-    margin:0;
-}
-.preferenceSec{
-    margin-top: 20px;
-}
-.bottom{
-    margin-top: 100%;
-    font-size: 30px;
+    transition: 0.3s;
 }
 
-.pages{
+.pages svg:hover {
+    color: #12F7D6;
+
+    background: rgba(18, 247, 214, 0.08);
+
+    transform: translateX(4px);
+}
+
+
+
+.bottom {
+    margin-top: auto;
+
+    padding-top: 25px;
+
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.preferenceSec {
     display: flex;
-    flex-direction: column;  
-    gap: 30px;
-    font-size: 50px;
-    margin:60px 50px;
+    flex-direction: column;
+
+    gap: 15px;
 }
-.logoIcon{
-    font-size: 50px;
+
+
+
+.toggle {
+    display: flex;
+
+    gap: 8px;
+}
+
+.toggle button {
+    flex: 1;
+
+    padding: 10px;
+
+    background: #121F30;
+
+    color: #AAB6C5;
+
+    border: 1px solid rgba(255, 255, 255, 0.08);
+
+    border-radius: 10px;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+.toggle button:hover {
+    border-color: #12F7D6;
+
+    color: #12F7D6;
+}
+
+.toggle button:first-child {
+    background: #12F7D6;
+
+    color: #08131F;
+
+    font-weight: 700;
 }

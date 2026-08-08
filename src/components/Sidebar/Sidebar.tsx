@@ -3,6 +3,7 @@ import { Text } from '../Text/Text';
 import { TiWeatherPartlySunny } from 'react-icons/ti';
 import { FaHome,FaBell,FaCog} from 'react-icons/fa';
 import {Theme} from '../Theme/Theme'
+import {Unit} from '../Unit/Unit'
 import { useNavigate } from 'react-router-dom';
 import { BsFillSaveFill } from "react-icons/bs";
 
@@ -32,28 +33,19 @@ const handleLocations =() =>{
       <FaHome onClick={handleHome}/>
       <FaCog onClick={handleSettings} />
       <BsFillSaveFill onClick={handleLocations}/>
-     
       </div>
+      <div className= {style.bottom}>
+     <div className={style.preferenceSec}>
 
-      <div className={style.bottom}>
+      <Unit/>
 
-      <div className={style.preferenceSec}>
+      <Theme />
 
-    <Text variant="body"> Units</Text>
-
-    <div className={style.toggle}>
-        <button> °C </button>
-        <button>°F </button>
-    </div>
-
-</div>
-
-<Theme/>
+      </div>
+        </div>
 
 
 
-
-</div>
     </aside>
   );
 };
