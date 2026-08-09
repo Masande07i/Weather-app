@@ -1,75 +1,29 @@
-# React + TypeScript + Vite
+# LINK-VAULTS
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# Project picture
 
-Currently, two official plugins are available:
+<img src="https://socialify.git.ci/Masande07i/Weather-app/image?language=1&owner=1&name=1&stargazers=1&theme=Light" alt="Weather-app" width="640" height="320" />
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+# Project description
+``A simple and user-friendly weather application built with React and TypeScript. It allows users to search for different locations and view current weather information such as temperature, humidity, wind speed, and weather conditions.The app also includes hourly and daily forecasts, dark and light themes, temperature unit switching, and saved locations. Weather data is provided through the Weatherstack API.This project was built to improve my React and TypeScript skills while learning how to work with APIs, reusable components, state management, and responsive UI design.```
 
-## React Compiler
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+# Installation and set-up
+``` bash
+Clone the repository:
 
-## Expanding the ESLint configuration
+git clone https://github.com/Masande07i/Weather-app.git
+cd Weather-app
+``` 
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+# Run App 
+``` bash
+npm install
+# or
+yarn install
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-
+npm run dev
 ```
-
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-
-```
+# Tech Stack
+## 1. React
+## 2. Typescript
