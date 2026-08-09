@@ -4,14 +4,7 @@ import style from './Unit.module.css';
 type TempUnit = 'C' | 'F';
 
 export const Unit = () => {
-
     const [unit, setUnit] = useState<TempUnit>('C');
-
-    const toggleUnit = () => {
-        setUnit((prevUnit) =>
-            prevUnit === 'C' ? 'F' : 'C'
-        );
-    };
 
     return (
         <div className={style.unit}>

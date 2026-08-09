@@ -1,7 +1,7 @@
 import style from './Sidebar.module.css';
 import { Text } from '../Text/Text';
 import { TiWeatherPartlySunny } from 'react-icons/ti';
-import { FaHome,FaBell,FaCog} from 'react-icons/fa';
+import { FaHome,FaCog} from 'react-icons/fa';
 import {Theme} from '../Theme/Theme'
 import {Unit} from '../Unit/Unit'
 import { useNavigate } from 'react-router-dom';
