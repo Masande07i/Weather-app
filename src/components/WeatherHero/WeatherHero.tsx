@@ -7,103 +7,219 @@ import { FaLocationDot } from 'react-icons/fa6';
 import { format } from 'date-fns';
 
 interface WeatherHeroProps {
-  weather: WeatherData;
-  locationName: string;
-  onCityChange: (newCity: string) => void; 
+    weather: WeatherData;
+    locationName: string;
+    onCityChange: (newCity: string) => void;
+    unit: 'C' | 'F';
 }
 
-export const WeatherHero = ({ weather, locationName, onCityChange }: WeatherHeroProps) => {
-  const [searchQuery, setSearchQuery] = useState<string>('');
+export const WeatherHero = ({
+    weather,
+    locationName,
+    onCityChange,
+    unit
+}: WeatherHeroProps) => {
+
+    const [searchQuery, setSearchQuery] = useState('');
 
     useEffect(() => {
-    setSearchQuery('');
-  }, [locationName]);
-  
+        setSearchQuery('');
+    }, [locationName]);
 
-  const { temp,tempmax,tempmin, conditions, feelslike, windspeed, humidity } = weather || {};
 
-  const handleSearchSubmit = (newValue: string) => {
-    setSearchQuery(newValue);
-    if (newValue.trim()) {
-      onCityChange(newValue); 
-    }
-  };
-return (
-  <main className={style.mainContent}>
+    const {
+        temp,
+        tempmax,
+        tempmin,
+        conditions,
+        feelslike,
+        windspeed,
+        humidity
+    } = weather || {};
 
-    <Search
-      searchQuery={searchQuery}
-      onSearch={handleSearchSubmit}
-    />
 
-    <section className={style.hero}>
+    
+    const convertTemperature = (temperature: number) => {
 
-      <div className={style.heroCard}>
+        if (unit === 'C') {
+            return temperature;
+        }
 
-        <div className={style.header}>
+        return (temperature * 9) / 5 + 32;
+    };
 
-          <div className={style.location}>
-            <FaLocationDot className={style.locationIcon} />
-            <span>{locationName}</span>
-          </div>
 
-          <p className={style.date}>
-            {format(new Date(), 'EEEE, h:mm a')}
-          </p>
+    const handleSearchSubmit = (newValue: string) => {
 
-          <div className={style.weatherInfo}>
+        setSearchQuery(newValue);
 
-            {temp !== undefined && (
-              <Text
-                variant="h1"
-                className={style.temperature}
-              >
-                {Math.round(temp)}°
-              </Text>
-            )}
+        if (newValue.trim()) {
+            onCityChange(newValue);
+        }
 
-            <p className={style.highLow}>
-              ↑{Math.round(tempmax)}° / ↓{Math.round(tempmin)}°
-            </p>
+    };
 
-            {conditions && (
-              <h2 className={style.condition}>
-                {conditions}
-              </h2>
-            )}
 
-            {feelslike !== undefined && (
-              <p className={style.feelsLike}>
-                Feels like {Math.round(feelslike)}°
-              </p>
-            )}
+    return (
 
-            <div className={style.weatherCards}>
+        <main className={style.mainContent}>
 
-              {windspeed !== undefined && (
-                <div className={style.weatherCard}>
-                  <span>Wind</span>
-                  <strong>{windspeed} km/h</strong>
+            <Search
+                searchQuery={searchQuery}
+                onSearch={handleSearchSubmit}/>
+          
+          
+            <section className={style.hero}>
+
+                <div className={style.heroCard}>
+
+                    <div className={style.header}>
+
+                    
+
+                        <div className={style.location}>
+
+                            <FaLocationDot
+                                className={style.locationIcon}
+                            />
+
+                            <span>
+                                {locationName}
+                            </span>
+
+                        </div>
+
+
+                     
+
+                        <p className={style.date}>
+                            {format(
+                                new Date(),
+                                'EEEE, h:mm a'
+                            )}
+                        </p>
+
+
+                        <div className={style.weatherInfo}>
+
+                            
+                            {temp !== undefined && (
+
+                                <Text
+                                    variant="h1"
+                                    className={style.temperature}
+                                >
+                                    {Math.round(
+                                        convertTemperature(temp)
+                                    )}
+                                    °{unit}
+                                </Text>
+
+                            )}
+
+
+                         
+
+                            {tempmax !== undefined &&
+                                tempmin !== undefined && (
+
+                                    <p className={style.highLow}>
+
+                                        ↑
+                                        {Math.round(
+                                            convertTemperature(tempmax)
+                                        )}
+                                        °
+
+                                        {' / '}
+
+                                        ↓
+                                        {Math.round(
+                                            convertTemperature(tempmin)
+                                        )}
+                                        °{unit}
+
+                                    </p>
+
+                                )}
+
+
+                            {conditions && (
+
+                                <h2 className={style.condition}>
+                                    {conditions}
+                                </h2>
+
+                            )}
+
+
+                            {/* Feels Like */}
+
+                            {feelslike !== undefined && (
+
+                                <p className={style.feelsLike}>
+
+                                    Feels like{' '}
+
+                                    {Math.round(
+                                        convertTemperature(feelslike)
+                                    )}
+                                    °{unit}
+
+                                </p>
+
+                            )}
+
+
+                            {/* Weather Cards */}
+
+                            <div className={style.weatherCards}>
+
+                                {windspeed !== undefined && (
+
+                                    <div className={style.weatherCard}>
+
+                                        <span>
+                                            Wind
+                                        </span>
+
+                                        <strong>
+                                            {windspeed} km/h
+                                        </strong>
+
+                                    </div>
+
+                                )}
+
+
+                                {humidity !== undefined && (
+
+                                    <div className={style.weatherCard}>
+
+                                        <span>
+                                            Humidity
+                                        </span>
+
+                                        <strong>
+                                            {humidity}%
+                                        </strong>
+
+                                    </div>
+
+                                )}
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
                 </div>
-              )}
 
-              {humidity !== undefined && (
-                <div className={style.weatherCard}>
-                  <span>Humidity</span>
-                  <strong>{humidity}%</strong>
-                </div>
-              )}
+            </section>
 
-            </div>
+          
+        </main>
 
-          </div>
-
-        </div>
-
-      </div>
-
-    </section>
-
-  </main>
-);
-}
+    );
+};

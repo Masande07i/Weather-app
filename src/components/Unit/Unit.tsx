@@ -1,10 +1,13 @@
-import { useState } from 'react';
 import style from './Unit.module.css';
 
 type TempUnit = 'C' | 'F';
 
-export const Unit = () => {
-    const [unit, setUnit] = useState<TempUnit>('C');
+interface UnitProps {
+    unit: TempUnit;
+    setUnit: (unit: TempUnit) => void;
+}
+
+export const Unit = ({ unit, setUnit }: UnitProps) => {
 
     return (
         <div className={style.unit}>
