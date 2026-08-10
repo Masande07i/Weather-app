@@ -1,0 +1,154 @@
+.settings {
+    margin-left: 260px;
+    padding: 40px;
+    min-height: 100vh;
+
+    background: #0B1624;
+    color: white;
+
+    box-sizing: border-box;
+}
+
+.header {
+    margin-bottom: 35px;
+}
+
+.header h1 {
+    margin: 0 0 8px 0;
+    font-size: 30px;
+}
+
+.header p {
+    margin: 0;
+    color: #AAB6C5;
+    font-size: 15px;
+}
+
+.section {
+    max-width: 850px;
+
+    background: #121F30;
+
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 16px;
+
+    padding: 25px;
+    margin-bottom: 20px;
+
+    box-sizing: border-box;
+}
+
+.sectionHeader {
+    margin-bottom: 20px;
+}
+
+.sectionHeader h2 {
+    margin: 0 0 6px 0;
+    font-size: 20px;
+}
+
+.sectionHeader p {
+    margin: 0;
+
+    color: #AAB6C5;
+    font-size: 14px;
+}
+
+
+/* Permissions */
+
+.permission {
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 18px 0;
+
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.permission h3 {
+    margin: 0 0 5px 0;
+    font-size: 16px;
+}
+
+.permission p {
+    margin: 0;
+
+    color: #AAB6C5;
+    font-size: 14px;
+}
+
+
+/* Permission button */
+
+.switch {
+    width: 60px;
+    height: 35px;
+
+    border: none;
+    border-radius: 20px;
+
+    background: #1A2A3D;
+    color: #AAB6C5;
+
+    cursor: pointer;
+
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.switch:hover {
+    border: 1px solid #12F7D6;
+}
+
+.switch.enabled {
+    background: #12F7D6;
+    color: #08131F;
+}
+
+
+/* Cached data */
+
+.cache {
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    padding-top: 15px;
+
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.cache h3 {
+    margin: 0 0 5px 0;
+    font-size: 16px;
+}
+
+.cache p {
+    margin: 0;
+
+    color: #AAB6C5;
+    font-size: 14px;
+}
+
+.clearButton {
+    padding: 10px 18px;
+
+    background: transparent;
+    color: #12F7D6;
+
+    border: 1px solid #12F7D6;
+    border-radius: 10px;
+
+    cursor: pointer;
+
+    font-size: 14px;
+}
+
+.clearButton:hover {
+    background: #12F7D6;
+    color: #08131F;
+}

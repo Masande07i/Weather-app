@@ -1,20 +1,24 @@
-import { useEffect, useState } from "react";
-import style from "./Theme.module.css";
-import { MdDarkMode, MdLightMode } from "react-icons/md";
+import { useEffect, useState } from 'react';
+import style from './Theme.module.css';
+import { MdDarkMode, MdLightMode } from 'react-icons/md';
+
+type ThemeType = 'dark' | 'light';
 
 export const Theme = () => {
 
-    const [theme, setTheme] = useState<"dark" | "light">(() => {
-        return (
-            (localStorage.getItem("theme") as "dark" | "light") || "dark"
-        );
-    });
+    const [theme, setTheme] = useState<ThemeType>('dark');
 
     useEffect(() => {
-        document.documentElement.setAttribute("data-theme", theme);
 
-        localStorage.setItem("theme", theme);
+        document.documentElement.setAttribute(
+            'data-theme',
+            theme
+        );
+
+        localStorage.setItem('theme', theme);
+
     }, [theme]);
+
 
     return (
         <section className={style.theme}>
@@ -26,24 +30,27 @@ export const Theme = () => {
             <div className={style.options}>
 
                 <button
-                    className={`${style.option} ${
-                        theme === "dark" ? style.active : ""
-                    }`}
-                    onClick={() => setTheme("dark")}
+                    className={
+                        theme === 'dark'
+                            ? style.active
+                            : ''
+                    }
+                    onClick={() => setTheme('dark')}
                 >
                     <MdDarkMode />
-
                     <span>Dark</span>
                 </button>
 
+
                 <button
-                    className={`${style.option} ${
-                        theme === "light" ? style.active : ""
-                    }`}
-                    onClick={() => setTheme("light")}
+                    className={
+                        theme === 'light'
+                            ? style.active
+                            : ''
+                    }
+                    onClick={() => setTheme('light')}
                 >
                     <MdLightMode />
-
                     <span>Light</span>
                 </button>
 

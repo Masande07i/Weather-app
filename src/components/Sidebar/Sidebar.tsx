@@ -1,7 +1,7 @@
 import style from './Sidebar.module.css';
 import { Text } from '../Text/Text';
 import { TiWeatherPartlySunny } from 'react-icons/ti';
-import { FaHome, FaCog } from 'react-icons/fa';
+import { FaHome,FaBell, FaCog } from 'react-icons/fa';
 import { Theme } from '../Theme/Theme';
 import { Unit } from '../Unit/Unit';
 import { useNavigate } from 'react-router-dom';
@@ -27,49 +27,31 @@ export const Sidebar = ({ unit, setUnit }: SidebarProps) => {
     const handleLocations = () => {
         navigate('/saved-locations');
     };
+    const handleAlerts = ()=>{
+        navigate('/alerts')
+    };
 
     return (
         <aside className={style.sidebar}>
 
-
             <div className={style.logo}>
-
-                <TiWeatherPartlySunny
-                    className={style.logoIcon}
-                />
-
-                <Text variant="h1">
-                    Weather
-                </Text>
-
+                <TiWeatherPartlySunny className={style.logoIcon}/>
+                <Text variant="h1">Weather</Text>
             </div>
 
             <div className={style.pages}>
-
                 <FaHome onClick={handleHome} />
-
                 <FaCog onClick={handleSettings} />
-
                 <BsFillSaveFill onClick={handleLocations} />
-
+                <FaBell onClick={handleAlerts}/>
             </div>
-
 
             <div className={style.bottom}>
-
                 <div className={style.preferenceSec}>
-
-                    <Unit
-                        unit={unit}
-                        setUnit={setUnit}
-                    />
-
+                    <Unit unit={unit} setUnit={setUnit}/>
                     <Theme />
-
                 </div>
-
             </div>
-
         </aside>
     );
 };

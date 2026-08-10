@@ -1,0 +1,140 @@
+.savedLocations {
+    margin-left: 260px;
+    padding: 40px;
+
+    min-height: 100vh;
+
+    background: #0B1624;
+    color: white;
+
+    box-sizing: border-box;
+}
+
+.header {
+    margin-bottom: 30px;
+}
+
+.header h1 {
+    margin: 0 0 8px 0;
+
+    font-size: 30px;
+}
+
+.header p {
+    margin: 0;
+
+    color: #AAB6C5;
+    font-size: 15px;
+}
+
+
+/* Location grid */
+
+.locationGrid {
+    display: grid;
+
+    grid-template-columns: repeat(
+        auto-fill,
+        minmax(250px, 1fr)
+    );
+
+    gap: 20px;
+
+    max-width: 1000px;
+}
+
+
+/* Location card */
+
+.locationCard {
+    background: #121F30;
+
+    border: 1px solid rgba(255, 255, 255, 0.08);
+
+    border-radius: 16px;
+
+    padding: 20px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 20px;
+
+    transition: 0.3s;
+}
+
+.locationCard:hover {
+    transform: translateY(-3px);
+
+    border-color: #12F7D6;
+
+    box-shadow: 0 10px 25px rgba(18, 247, 214, 0.1);
+}
+
+.locationCard h2 {
+    margin: 0 0 5px 0;
+
+    font-size: 18px;
+}
+
+.locationCard p {
+    margin: 0;
+
+    color: #AAB6C5;
+
+    font-size: 13px;
+}
+
+
+/* Remove button */
+
+.removeButton {
+    padding: 8px 12px;
+
+    background: transparent;
+
+    color: #AAB6C5;
+
+    border: 1px solid rgba(255, 255, 255, 0.1);
+
+    border-radius: 8px;
+
+    cursor: pointer;
+
+    font-size: 13px;
+}
+
+.removeButton:hover {
+    color: #ff6b6b;
+
+    border-color: #ff6b6b;
+}
+
+
+/* Empty state */
+
+.empty {
+    max-width: 600px;
+
+    padding: 50px;
+
+    background: #121F30;
+
+    border: 1px solid rgba(255, 255, 255, 0.08);
+
+    border-radius: 16px;
+
+    text-align: center;
+}
+
+.empty h2 {
+    margin: 0 0 10px 0;
+}
+
+.empty p {
+    margin: 0;
+
+    color: #AAB6C5;
+}
