@@ -1,13 +1,11 @@
 import { useState } from 'react';
 import style from './Settings.module.css';
 import { Theme } from '../../components/Theme/Theme';
-import { Unit } from '../../components/Unit/Unit';
 
 export const Settings = () => {
 
     const [notifications, setNotifications] = useState(false);
     const [location, setLocation] = useState(false);
-    const [unit, setUnit] = useState<'C' | 'F'>('C');
 
     const handleNotifications = () => {
         setNotifications(!notifications);
@@ -39,15 +37,6 @@ export const Settings = () => {
                 </div>
                 <Theme />
             </section>
-            <section className={style.section}>
-              <div className={style.sectionHeader}>
-               <h2>Units</h2>
-              <p> Choose which temperature unit you want to use.</p>
-            </div>
-               <Unit unit={unit} setUnit={setUnit}/>
-           </section>
-            
-
 
             <section className={style.section}>
                 <div className={style.sectionHeader}>
