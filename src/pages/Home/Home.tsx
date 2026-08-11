@@ -1,6 +1,7 @@
 import { WeatherHero } from '../../components/WeatherHero/WeatherHero';
 import { Forecast } from '../../components/Forecast/Forecast';
 import { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 
 interface HomeProps {
     unit: 'C' | 'F';
@@ -25,7 +26,9 @@ const getWeather = async (city: string) => {
 };
 
 export const Home = ({ unit }: HomeProps) => {
-    const [city, setCity] = useState('Pietermaritzburg');
+    const location = useLocation();
+
+    const [city, setCity] = useState(location.state?.city || 'Pietermaritzburg');
     const [weatherData, setWeatherData] = useState<any | null>(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState('');

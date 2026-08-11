@@ -1,8 +1,10 @@
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import style from './SavedLocations.module.css';
 
 export const SavedLocations = () => {
     const [locations, setLocations] = useState<string[]>([]);
+    const navigate = useNavigate();
 
     useEffect(() => {
         const savedLocations = localStorage.getItem('savedLocations');
@@ -22,6 +24,12 @@ export const SavedLocations = () => {
             'savedLocations',
             JSON.stringify(updatedLocations)
         );
+    };
+
+    const selectLocation = (location: string) => {
+        navigate('/', {
+            state: { city: location }
+        });
     };
 
     return (
@@ -44,6 +52,7 @@ export const SavedLocations = () => {
                         <div
                             key={location}
                             className={style.locationCard}
+                            onClick={() => selectLocation(location)}
                         >
                             <div>
                                 <h2>{location}</h2>
@@ -52,7 +61,10 @@ export const SavedLocations = () => {
 
                             <button
                                 className={style.removeButton}
-                                onClick={() => removeLocation(location)}
+                                onClick={(event) => {
+                                    event.stopPropagation();
+                                    removeLocation(location);
+                                }}
                             >
                                 Remove
                             </button>
