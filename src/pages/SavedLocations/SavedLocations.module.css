@@ -28,7 +28,7 @@
 }
 
 
-/* Location grid */
+
 
 .locationGrid {
     display: grid;
@@ -44,7 +44,7 @@
 }
 
 
-/* Location card */
+
 
 .locationCard {
     background: #121F30;
@@ -66,8 +66,7 @@
 }
 
 .locationCard:hover {
-    transform: translateY(-3px);
-
+    
     border-color: #12F7D6;
 
     box-shadow: 0 10px 25px rgba(18, 247, 214, 0.1);
@@ -88,7 +87,7 @@
 }
 
 
-/* Remove button */
+
 
 .removeButton {
     padding: 8px 12px;
@@ -113,7 +112,6 @@
 }
 
 
-/* Empty state */
 
 .empty {
     max-width: 600px;

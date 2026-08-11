@@ -7,19 +7,13 @@ interface ForecastProps {
     unit: 'C' | 'F';
 }
 
-export function Forecast({
-    hourly,
-    weekly,
-    unit
-}: ForecastProps) {
+export function Forecast({hourly,weekly,unit}: ForecastProps) {
 
     const [activeTab, setActiveTab] = useState<'hourly' | 'weekly'>('hourly');
-
 
     const formatHour = (timeStr: string) => {
         return timeStr.substring(0, 5);
     };
-
 
     const formatDay = (dateStr: string) => {
 

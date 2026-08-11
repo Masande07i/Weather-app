@@ -26,15 +26,11 @@
 
 .section {
     max-width: 850px;
-
     background: #121F30;
-
     border: 1px solid rgba(255, 255, 255, 0.08);
     border-radius: 16px;
-
     padding: 25px;
     margin-bottom: 20px;
-
     box-sizing: border-box;
 }
 
@@ -55,7 +51,7 @@
 }
 
 
-/* Permissions */
+
 
 .permission {
     display: flex;
@@ -81,7 +77,7 @@
 }
 
 
-/* Permission button */
+
 
 .switch {
     width: 60px;
@@ -109,7 +105,7 @@
 }
 
 
-/* Cached data */
+
 
 .cache {
     display: flex;

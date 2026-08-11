@@ -6,7 +6,6 @@ export const SavedLocations = () => {
 
     const [locations, setLocations] = useState<string[]>([]);
 
-    // Load saved locations when the page opens
     useEffect(() => {
 
         const savedLocations = localStorage.getItem('savedLocations');
@@ -17,8 +16,6 @@ export const SavedLocations = () => {
 
     }, []);
 
-
-    // Remove a location
     const removeLocation = (location: string) => {
 
         const updatedLocations = locations.filter(

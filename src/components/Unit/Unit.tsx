@@ -20,20 +20,16 @@ export const Unit = ({ unit, setUnit }: UnitProps) => {
 
                 <button
                     className={unit === 'C' ? style.active : ''}
-                    onClick={() => setUnit('C')}
-                >
+                    onClick={() => setUnit('C')}>
                     °C
                 </button>
 
                 <button
                     className={unit === 'F' ? style.active : ''}
-                    onClick={() => setUnit('F')}
-                >
+                    onClick={() => setUnit('F')}>
                     °F
                 </button>
-
             </div>
-
         </div>
     );
 };

@@ -1,13 +1,13 @@
 import { WeatherHero } from '../../components/WeatherHero/WeatherHero';
 import { Forecast } from '../../components/Forecast/Forecast';
-import { Sidebar } from '../../components/Sidebar/Sidebar';
 import { useState, useEffect } from 'react';
 
+interface HomeProps{
+    unit : 'C' |'F';
+}
 
 const getWeather = async (city: string) => {
-
     const apiKey = import.meta.env.VITE_API_KEY;
-
     if (!apiKey) {
         throw new Error('API Key is missing');
     }
@@ -24,70 +24,44 @@ const getWeather = async (city: string) => {
 };
 
 
-export const Home = () => {
+export const Home = ({unit}:HomeProps) => {
 
     const [city, setCity] = useState('Pietermaritzburg');
     const [weatherData, setWeatherData] = useState<any | null>(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState('');
-    const [unit, setUnit] = useState<'C' | 'F'>('C');
+   
 
 
     useEffect(() => {
-
         const fetchWeather = async () => {
-
             setLoading(true);
-
             setError('');
-
             try {
-
                 const weather = await getWeather(city);
-
                 setWeatherData({
                     current: {
                         ...weather.currentConditions,
-
                         tempmax: weather.days[0].tempmax,
-
                         tempmin: weather.days[0].tempmin,
                     },
-
                     hourly: weather.days[0].hours,
-
                     weekly: weather.days,
                 });
-
             } catch (e) {
-
                 setError(
                     `${e instanceof Error ? e.message : String(e)}`
                 );
-
             } finally {
-
                 setLoading(false);
-
             }
         };
-
         fetchWeather();
-
     }, [city]);
 
-
     return (
-
-        <div>
-
-            <Sidebar
-                unit={unit}
-                setUnit={setUnit}
-            />
-                                                    
+                                
             <main>
-
                 {loading && (
                     <div className="status-message">
                         Loading weather data...
@@ -102,25 +76,20 @@ export const Home = () => {
 
                 {!loading && !error && weatherData && (
                     <>
-
                         <WeatherHero
                             weather={weatherData.current}
                             locationName={city}
                             onCityChange={setCity}
                             unit={unit}
                         />
-
                         <Forecast
                             hourly={weatherData.hourly}
                             weekly={weatherData.weekly}
                             unit={unit}
                         />
-
                     </>
                 )}
-
             </main>
-
-        </div>
+       
     );
 };

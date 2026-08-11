@@ -13,12 +13,7 @@ interface WeatherHeroProps {
     unit: 'C' | 'F';
 }
 
-export const WeatherHero = ({
-    weather,
-    locationName,
-    onCityChange,
-    unit
-}: WeatherHeroProps) => {
+export const WeatherHero = ({weather,locationName,onCityChange,unit}: WeatherHeroProps) => {
 
     const [searchQuery, setSearchQuery] = useState('');
 
@@ -40,36 +35,30 @@ export const WeatherHero = ({
         if (unit === 'C') {
             return temperature;
         }
-
         return (temperature * 9) / 5 + 32;
     };
 
     const handleSearchSubmit = (newValue: string) => {
         setSearchQuery(newValue);
-
         if (newValue.trim()) {
             onCityChange(newValue);
         }
     };
-
     const saveLocation = () => {
         const savedLocations = localStorage.getItem('savedLocations');
 
         const locations: string[] = savedLocations
             ? JSON.parse(savedLocations)
             : [];
-
         if (!locations.includes(locationName)) {
             const updatedLocations = [
                 ...locations,
                 locationName
             ];
-
             localStorage.setItem(
                 'savedLocations',
                 JSON.stringify(updatedLocations)
             );
-
             alert(`${locationName} has been saved!`);
         }
     };
@@ -86,33 +75,20 @@ export const WeatherHero = ({
                     <div className={style.header}>
                         <div className={style.location}>
                             <FaLocationDot className={style.locationIcon} />
-
-                            <span>
-                                {locationName}
-                            </span>
-
-                            <button
-                                className={style.saveButton}
-                                onClick={saveLocation}
-                            >
+                            <span>{locationName}</span>
+                            <button className={style.saveButton}onClick={saveLocation}>
                                 Save
                             </button>
                         </div>
 
-                        <p className={style.date}>
-                            {format(new Date(), 'EEEE, h:mm a')}
-                        </p>
+                        <p className={style.date}>{format(new Date(), 'EEEE, h:mm a')}</p>
 
                         <div className={style.weatherInfo}>
                             {temp !== undefined && (
-                                <Text
-                                    variant="h1"
-                                    className={style.temperature}
-                                >
+                                <Text variant="h1"className={style.temperature}>
                                     {Math.round(convertTemperature(temp))}°{unit}
                                 </Text>
                             )}
-
                             {tempmax !== undefined && tempmin !== undefined && (
                                 <p className={style.highLow}>
                                     ↑{Math.round(convertTemperature(tempmax))}°
@@ -122,9 +98,7 @@ export const WeatherHero = ({
                             )}
 
                             {conditions && (
-                                <h2 className={style.condition}>
-                                    {conditions}
-                                </h2>
+                                <h2 className={style.condition}>{conditions}</h2>
                             )}
 
                             {feelslike !== undefined && (
