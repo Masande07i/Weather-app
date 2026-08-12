@@ -4,7 +4,7 @@
     padding: 30px 40px;
     background: var(--background);
     box-sizing: border-box;
-    transition: background 0.3s ease;
+   
 }
 
 .mainContent > form {
