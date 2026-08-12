@@ -1,6 +1,7 @@
 import { WeatherHero } from '../../components/WeatherHero/WeatherHero';
 import { Forecast } from '../../components/Forecast/Forecast';
 import { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 
 interface HomeProps {
     unit: 'C' | 'F';
@@ -45,7 +46,10 @@ const getWeatherByCity = async (city: string) => {
     return response.json();
 };
 
-const getCityFromCoordinates = async (latitude: number,longitude: number) => {
+const getCityFromCoordinates = async (
+    latitude: number,
+    longitude: number
+) => {
     const response = await fetch(
         `https://nominatim.openstreetmap.org/reverse?lat=${latitude}&lon=${longitude}&format=json`
     );
@@ -66,8 +70,14 @@ const getCityFromCoordinates = async (latitude: number,longitude: number) => {
 };
 
 export const Home = ({ unit }: HomeProps) => {
+    const location = useLocation();
+
+    const selectedCity = location.state?.city;
+
     const [city, setCity] = useState(
-        localStorage.getItem('currentLocation') || ''
+        selectedCity ||
+        localStorage.getItem('currentLocation') ||
+        ''
     );
 
     const [weatherData, setWeatherData] = useState<any | null>(null);
@@ -91,6 +101,20 @@ export const Home = ({ unit }: HomeProps) => {
     };
 
     useEffect(() => {
+        if (selectedCity) {
+            setCity(selectedCity);
+            setWeatherData(null);
+            setError('');
+            setLocationChecked(true);
+
+            localStorage.setItem(
+                'currentLocation',
+                selectedCity
+            );
+
+            return;
+        }
+
         const savedLocation = localStorage.getItem('currentLocation');
 
         if (savedLocation) {
@@ -151,7 +175,7 @@ export const Home = ({ unit }: HomeProps) => {
                 setLocationChecked(true);
             }
         );
-    }, []);
+    }, [selectedCity]);
 
     useEffect(() => {
         if (!locationChecked || !city || weatherData) {
@@ -167,7 +191,7 @@ export const Home = ({ unit }: HomeProps) => {
 
                 updateWeatherData(weather);
 
-                const location = weather.resolvedAddress;
+                const location = weather.resolvedAddress || city;
 
                 setCity(location);
 

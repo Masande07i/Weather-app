@@ -20,6 +20,7 @@ export const SavedLocations = () => {
         );
 
         setLocations(updatedLocations);
+
         localStorage.setItem(
             'savedLocations',
             JSON.stringify(updatedLocations)
@@ -28,7 +29,9 @@ export const SavedLocations = () => {
 
     const selectLocation = (location: string) => {
         navigate('/', {
-            state: { city: location }
+            state: {
+                city: location
+            }
         });
     };
 
