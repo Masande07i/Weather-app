@@ -47,7 +47,9 @@ export const Home = ({ unit }: HomeProps) => {
                         tempmax: weather.days[0].tempmax,
                         tempmin: weather.days[0].tempmin,
                     },
-                    hourly: weather.days[0].hours,
+                    hourly: [
+                        ...weather.days[0].hours,
+                        ...weather.days[1].hours],
                     weekly: weather.days,
                 };
                 setWeatherData(data);
