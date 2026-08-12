@@ -2,11 +2,10 @@
     margin-left: 260px;
     padding: 40px;
     min-height: 100vh;
-
-    background: #0B1624;
-    color: white;
-
+    background: var(--background);
+    color: var(--text);
     box-sizing: border-box;
+    transition: background 0.3s ease, color 0.3s ease;
 }
 
 .header {
@@ -20,18 +19,19 @@
 
 .header p {
     margin: 0;
-    color: #AAB6C5;
+    color: var(--secondary-text);
     font-size: 15px;
 }
 
 .section {
     max-width: 850px;
-    background: #121F30;
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: var(--card-background);
+    border: 1px solid var(--border);
     border-radius: 16px;
     padding: 25px;
     margin-bottom: 20px;
     box-sizing: border-box;
+    transition: background 0.3s ease, border 0.3s ease;
 }
 
 .sectionHeader {
@@ -45,23 +45,16 @@
 
 .sectionHeader p {
     margin: 0;
-
-    color: #AAB6C5;
+    color: var(--secondary-text);
     font-size: 14px;
 }
 
-
-
-
 .permission {
     display: flex;
-
     align-items: center;
     justify-content: space-between;
-
     padding: 18px 0;
-
-    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    border-top: 1px solid var(--border);
 }
 
 .permission h3 {
@@ -71,28 +64,21 @@
 
 .permission p {
     margin: 0;
-
-    color: #AAB6C5;
+    color: var(--secondary-text);
     font-size: 14px;
 }
-
-
-
 
 .switch {
     width: 60px;
     height: 35px;
-
     border: none;
     border-radius: 20px;
-
-    background: #1A2A3D;
-    color: #AAB6C5;
-
+    background: var(--switch-background);
+    color: var(--secondary-text);
     cursor: pointer;
-
     font-size: 13px;
     font-weight: 600;
+    transition: 0.3s;
 }
 
 .switch:hover {
@@ -104,18 +90,12 @@
     color: #08131F;
 }
 
-
-
-
 .cache {
     display: flex;
-
     align-items: center;
     justify-content: space-between;
-
     padding-top: 15px;
-
-    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    border-top: 1px solid var(--border);
 }
 
 .cache h3 {
@@ -125,23 +105,19 @@
 
 .cache p {
     margin: 0;
-
-    color: #AAB6C5;
+    color: var(--secondary-text);
     font-size: 14px;
 }
 
 .clearButton {
     padding: 10px 18px;
-
     background: transparent;
     color: #12F7D6;
-
     border: 1px solid #12F7D6;
     border-radius: 10px;
-
     cursor: pointer;
-
     font-size: 14px;
+    transition: 0.3s;
 }
 
 .clearButton:hover {

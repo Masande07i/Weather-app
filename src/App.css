@@ -1,23 +1,32 @@
 :root {
     --background: #08131F;
+    --sidebar-background: #0E1A2B;
     --text: #FFFFFF;
     --card-background: #121F30;
+    --tab-background: #0E1A2B;
+    --switch-background: #1A2A3D;
     --secondary-text: #AAB6C5;
     --border: rgba(255, 255, 255, 0.08);
 }
 
 :root[data-theme="light"] {
     --background: #EAF6FF;
+    --sidebar-background: #D9EEFC;
     --text: #172B3A;
     --card-background: #D9EEFC;
+    --tab-background: #CBE7F8;
+    --switch-background: #B9D8EB;
     --secondary-text: #60788A;
     --border: rgba(8, 19, 31, 0.1);
 }
 
 :root[data-theme="dark"] {
     --background: #08131F;
+    --sidebar-background: #0E1A2B;
     --text: #FFFFFF;
     --card-background: #121F30;
+    --tab-background: #0E1A2B;
+    --switch-background: #1A2A3D;
     --secondary-text: #AAB6C5;
     --border: rgba(255, 255, 255, 0.08);
 }
