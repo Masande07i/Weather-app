@@ -1,13 +1,33 @@
 import { WeatherHero } from '../../components/WeatherHero/WeatherHero';
 import { Forecast } from '../../components/Forecast/Forecast';
 import { useState, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
 
 interface HomeProps {
     unit: 'C' | 'F';
 }
 
-const getWeather = async (city: string) => {
+const getWeatherByCoordinates = async (
+    latitude: number,
+    longitude: number
+) => {
+    const apiKey = import.meta.env.VITE_API_KEY;
+
+    if (!apiKey) {
+        throw new Error('API Key is missing');
+    }
+
+    const response = await fetch(
+        `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${latitude},${longitude}?unitGroup=metric&key=${apiKey}`
+    );
+
+    if (!response.ok) {
+        throw new Error('Unable to fetch weather data');
+    }
+
+    return response.json();
+};
+
+const getWeatherByCity = async (city: string) => {
     const apiKey = import.meta.env.VITE_API_KEY;
 
     if (!apiKey) {
@@ -25,59 +45,166 @@ const getWeather = async (city: string) => {
     return response.json();
 };
 
-export const Home = ({ unit }: HomeProps) => {
-    const location = useLocation();
+const getCityFromCoordinates = async (latitude: number,longitude: number) => {
+    const response = await fetch(
+        `https://nominatim.openstreetmap.org/reverse?lat=${latitude}&lon=${longitude}&format=json`
+    );
 
-    const [city, setCity] = useState(location.state?.city || 'Pietermaritzburg');
+    if (!response.ok) {
+        throw new Error('Unable to find your location');
+    }
+
+    const data = await response.json();
+
+    return (
+        data.address.city ||
+        data.address.town ||
+        data.address.municipality ||
+        data.address.village ||
+        'Unknown location'
+    );
+};
+
+export const Home = ({ unit }: HomeProps) => {
+    const [city, setCity] = useState(
+        localStorage.getItem('currentLocation') || ''
+    );
+
     const [weatherData, setWeatherData] = useState<any | null>(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState('');
+    const [locationChecked, setLocationChecked] = useState(false);
+
+    const updateWeatherData = (weather: any) => {
+        setWeatherData({
+            current: {
+                ...weather.currentConditions,
+                tempmax: weather.days[0].tempmax,
+                tempmin: weather.days[0].tempmin
+            },
+            hourly: [
+                ...weather.days[0].hours,
+                ...weather.days[1].hours
+            ],
+            weekly: weather.days
+        });
+    };
 
     useEffect(() => {
+        const savedLocation = localStorage.getItem('currentLocation');
+
+        if (savedLocation) {
+            setCity(savedLocation);
+            setLocationChecked(true);
+            return;
+        }
+
+        if (!navigator.geolocation) {
+            setError(
+                'Location services are not supported by your browser.'
+            );
+            setLoading(false);
+            setLocationChecked(true);
+            return;
+        }
+
+        navigator.geolocation.getCurrentPosition(
+            async (position) => {
+                try {
+                    const latitude = position.coords.latitude;
+                    const longitude = position.coords.longitude;
+
+                    const weather = await getWeatherByCoordinates(
+                        latitude,
+                        longitude
+                    );
+
+                    const location = await getCityFromCoordinates(
+                        latitude,
+                        longitude
+                    );
+
+                    setCity(location);
+
+                    localStorage.setItem(
+                        'currentLocation',
+                        location
+                    );
+
+                    updateWeatherData(weather);
+                } catch (e) {
+                    setError(
+                        e instanceof Error
+                            ? e.message
+                            : String(e)
+                    );
+                } finally {
+                    setLoading(false);
+                    setLocationChecked(true);
+                }
+            },
+            () => {
+                setError(
+                    'Location access is required to show your current weather.'
+                );
+                setLoading(false);
+                setLocationChecked(true);
+            }
+        );
+    }, []);
+
+    useEffect(() => {
+        if (!locationChecked || !city || weatherData) {
+            return;
+        }
+
         const fetchWeather = async () => {
             setLoading(true);
             setError('');
 
             try {
-                const weather = await getWeather(city);
+                const weather = await getWeatherByCity(city);
 
-                const data = {
-                    current: {
-                        ...weather.currentConditions,
-                        tempmax: weather.days[0].tempmax,
-                        tempmin: weather.days[0].tempmin,
-                    },
-                    hourly: [
-                        ...weather.days[0].hours,
-                        ...weather.days[1].hours],
-                    weekly: weather.days,
-                };
-                setWeatherData(data);
-                localStorage.setItem(`weather-${city}`,JSON.stringify(data));
-            } catch (e) {
-                const savedWeather = localStorage.getItem(
-                    `weather-${city}`
+                updateWeatherData(weather);
+
+                const location = weather.resolvedAddress;
+
+                setCity(location);
+
+                localStorage.setItem(
+                    'currentLocation',
+                    location
                 );
-
-                if (savedWeather) {
-                    setWeatherData(JSON.parse(savedWeather));
-                    setError('');
-                } else {
-                    setError(e instanceof Error? e.message: String(e));
-                }
+            } catch (e) {
+                setError(
+                    e instanceof Error
+                        ? e.message
+                        : String(e)
+                );
             } finally {
                 setLoading(false);
             }
         };
 
         fetchWeather();
-    }, [city]);
+    }, [city, locationChecked, weatherData]);
+
+    const handleCityChange = (newCity: string) => {
+        setWeatherData(null);
+        setCity(newCity);
+        setError('');
+
+        localStorage.setItem(
+            'currentLocation',
+            newCity
+        );
+    };
 
     return (
         <main>
             {loading && (
                 <div className="status-message">
-                    Loading weather data...
+                    Getting your weather...
                 </div>
             )}
 
@@ -92,7 +219,7 @@ export const Home = ({ unit }: HomeProps) => {
                     <WeatherHero
                         weather={weatherData.current}
                         locationName={city}
-                        onCityChange={setCity}
+                        onCityChange={handleCityChange}
                         unit={unit}
                     />
 
