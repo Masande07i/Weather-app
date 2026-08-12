@@ -90,7 +90,8 @@ export const Home = ({ unit }: HomeProps) => {
             current: {
                 ...weather.currentConditions,
                 tempmax: weather.days[0].tempmax,
-                tempmin: weather.days[0].tempmin
+                tempmin: weather.days[0].tempmin,
+                icon: weather.currentConditions.icon
             },
             hourly: [
                 ...weather.days[0].hours,

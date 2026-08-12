@@ -26,6 +26,7 @@ export const WeatherHero = ({
         setSearchQuery('');
 
         const savedLocations = localStorage.getItem('savedLocations');
+
         const locations: string[] = savedLocations
             ? JSON.parse(savedLocations)
             : [];
@@ -40,7 +41,8 @@ export const WeatherHero = ({
         conditions,
         feelslike,
         windspeed,
-        humidity
+        humidity,
+        icon
     } = weather || {};
 
     const convertTemperature = (temperature: number) => {
@@ -49,6 +51,20 @@ export const WeatherHero = ({
         }
 
         return (temperature * 9) / 5 + 32;
+    };
+
+    const getWeatherIcon = (weatherIcon?: string) => {
+        if (!weatherIcon) {
+            return null;
+        }
+
+        return (
+            <img
+                src={`https://raw.githubusercontent.com/visualcrossing/WeatherIcons/main/PNG/4th%20Set%20-%20Color/${weatherIcon}.png`}
+                alt={conditions || 'Weather condition'}
+                className={style.weatherIcon}
+            />
+        );
     };
 
     const handleSearchSubmit = (newValue: string) => {
@@ -89,7 +105,9 @@ export const WeatherHero = ({
                 <div className={style.heroCard}>
                     <div className={style.header}>
                         <div className={style.location}>
-                            <FaLocationDot className={style.locationIcon} />
+                            <FaLocationDot
+                                className={style.locationIcon}
+                            />
 
                             <span>{locationName}</span>
 
@@ -107,17 +125,21 @@ export const WeatherHero = ({
                         </p>
 
                         <div className={style.weatherInfo}>
-                            {temp !== undefined && (
-                                <Text
-                                    variant="h1"
-                                    className={style.temperature}
-                                >
-                                    {Math.round(
-                                        convertTemperature(temp)
-                                    )}
-                                    °{unit}
-                                </Text>
-                            )}
+                            <div className={style.temperatureRow}>
+                                {icon && getWeatherIcon(icon)}
+
+                                {temp !== undefined && (
+                                    <Text
+                                        variant="h1"
+                                        className={style.temperature}
+                                    >
+                                        {Math.round(
+                                            convertTemperature(temp)
+                                        )}
+                                        °{unit}
+                                    </Text>
+                                )}
+                            </div>
 
                             {tempmax !== undefined &&
                                 tempmin !== undefined && (
@@ -156,6 +178,7 @@ export const WeatherHero = ({
                                 {windspeed !== undefined && (
                                     <div className={style.weatherCard}>
                                         <span>Wind</span>
+
                                         <strong>
                                             {windspeed} km/h
                                         </strong>
@@ -165,6 +188,7 @@ export const WeatherHero = ({
                                 {humidity !== undefined && (
                                     <div className={style.weatherCard}>
                                         <span>Humidity</span>
+
                                         <strong>
                                             {humidity}%
                                         </strong>
